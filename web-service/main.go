@@ -12,11 +12,10 @@ import (
 func main()  {
 	app := fx.New(
 		fx.Provide(
-			//handler
-			component.NewControlHandler,
-
 			//service
 			component.NewControlService,
+			//handler
+			component.NewControlHandler,
 		),
 		fx.Invoke(
 			SetRouter,
@@ -28,8 +27,9 @@ func main()  {
 	if err := app.Start(startCtx); err != nil{
 		log.Fatal(err)
 	}
+	//service := component.NewControlService()
 
-
+	//SetRouter(component.NewControlHandler(service))
 }
 
 func SetRouter(c *component.ControlHandler){
